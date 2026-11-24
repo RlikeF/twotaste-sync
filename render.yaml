@@ -1,0 +1,14 @@
+# Render 一键部署（免费计划即可）：New → Web Service → 选这个仓库 → Render 自动识别本文件
+services:
+  - type: web
+    name: twotaste-sync
+    runtime: docker
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: TOKEN
+        generateValue: true # 自动生成一串口令，部署完在 Render 面板里看
+      - key: DATA_FILE
+        value: /data/state.json
